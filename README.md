@@ -5,6 +5,8 @@
 
 </div>
 
+***Veuillez suivre les étapes étape par étapes, donc ne pas se tromper, si c'est le cas, veuillez supprimer les images et les conteneurs et les réinstaller*** 
+
 ## Introduction
 
 Après avoir présenté les solutions existantes, nous verrons comment collecter les logs d'un serveur web Apache à l'aide d'Elasticsearch, Kibana et Filebeat. Pour cela, quatre scripts bash seront utilisés pour collecter les logs depuis l'interface graphique de Kibana (Elastic). Pour simplifier, j'ai renommé ces scripts :
@@ -90,10 +92,11 @@ Filebeat permet de collecter les logs de plusieurs conteneurs. Pour installer et
    [![Management index](https://i.postimg.cc/BQHpQTTF/18.png)](https://postimg.cc/2Vjh0BXj)
    L'indice `filebeat` que j'avais installé était maintenant visible.
 
-5. **Exploration des tableaux de bord :**  
+5. **Exploration des tableaux de bord :** 
    J'ai navigué dans le menu de gauche pour accéder aux tableaux de bord ("dashboards").  
    [![Dashboard](https://i.postimg.cc/NfdMXVkv/19.png)](https://postimg.cc/1fNshvdv)
-   Le tableau de bord qui m'intéressait montrait les logs d'accès et d'erreur du serveur web Apache.  
+
+   Le tableau de bord qui m'intéressait montrait les logs d'accès et d'erreur du serveur web Apache. Veuillez cliquer sur ce tableau de bord et charger la page, vous allez voir que il n'y a pas encore de donnée affichés (métriques et logs)
    [![Apache dashboard](https://i.postimg.cc/7LypZPJH/20.png)](https://postimg.cc/MndssSYN)
 
 À noter que ces logs n'étaient pas encore disponibles car le serveur web Apache n'avait pas encore été installé et relié aux conteneurs Elasticsearch, Kibana, et Filebeat.
@@ -121,7 +124,26 @@ Retour au terminal pour continuer les étapes d'installation.
 
 Tous les éléments sont correctement installés et fonctionnent comme attendu.
 
-## IV. Redémarrage des conteneurs
+## IV. Visualiser les logs de serveur web Apache
+
+Après avoir correctement configuré et redémarré tous les conteneurs, je suis en mesure de visualiser les logs du serveur web Apache directement depuis l'interface de Kibana.
+
+1. **Accès à l'interface de Kibana :**  
+   J'ai ouvert un navigateur et accédé à Kibana en utilisant l'URL `localhost:5601` (déjà ouvert dans mon cas).
+   
+2. **Navigation vers le tableau de bord approprié :**  
+   J'ai ensuite cliqué sur la rubrique "Dashboard" (Tableau de bord). De là, j'ai sélectionné le tableau de bord intitulé "[Filebeat Apache] Access and error Logs ECS".  
+   [![Kibana dashboard selection](https://i.postimg.cc/bN2K1VnF/26.png)](https://postimg.cc/jLtgbXZz) 
+   [![Filebeat Apache dashboard](https://i.postimg.cc/vmdgGK7R/27.png)](https://postimg.cc/VJDLRDH4)
+
+3. **Examen des logs et des métriques :**  
+   Ce tableau de bord m'a fourni un aperçu visuel des statistiques du serveur Apache, notamment sous forme de graphiques et de métriques. En descendant un peu plus bas, j'ai également pu voir les logs d'accès et d'erreurs du serveur.  
+   [![Apache statistics](https://i.postimg.cc/903FBRL6/28.png)](https://postimg.cc/9RphmM5b)
+   [![Apache logs](https://i.postimg.cc/9frm5tK3/29.png)](https://postimg.cc/XZ6S9Fnx)
+
+Ces outils de visualisation offerts par Kibana rendent l'analyse des logs et la surveillance de l'activité du serveur Apache beaucoup plus simples et plus efficaces.
+
+## V. Redémarrage des conteneurs (Optionnel)
 
 Pour faciliter la gestion des conteneurs après leur installation initiale, j'ai créé un script `restart.sh`. Contrairement aux scripts précédents (setup1.sh, setup2.sh, setup3.sh), celui-ci est conçu pour être utilisé plusieurs fois, notamment après que les images et les conteneurs ont été installés.
 
@@ -138,25 +160,7 @@ Pour faciliter la gestion des conteneurs après leur installation initiale, j'ai
 
 Cela confirme que le script `restart.sh` fonctionne comme prévu, redémarrant tous les conteneurs nécessaires.
 
-## V. Visualiser les logs de serveur web Apache
-
-Après avoir correctement configuré et redémarré tous les conteneurs, je suis en mesure de visualiser les logs du serveur web Apache directement depuis l'interface de Kibana.
-
-1. **Accès à l'interface de Kibana :**  
-   J'ai ouvert un navigateur et accédé à Kibana en utilisant l'URL `localhost:5601`.
-   **Assurz-vous que Kibana est lancé en consultant la commande `docker logs -f kibana` comme vu précédement, voir la première partie de document explicatif.**
-   
-2. **Navigation vers le tableau de bord approprié :**  
-   J'ai ensuite cliqué sur la rubrique "Dashboard" (Tableau de bord). De là, j'ai sélectionné le tableau de bord intitulé "[Filebeat Apache] Access and error Logs ECS".  
-   [![Kibana dashboard selection](https://i.postimg.cc/bN2K1VnF/26.png)](https://postimg.cc/jLtgbXZz) 
-   [![Filebeat Apache dashboard](https://i.postimg.cc/vmdgGK7R/27.png)](https://postimg.cc/VJDLRDH4)
-
-3. **Examen des logs et des métriques :**  
-   Ce tableau de bord m'a fourni un aperçu visuel des statistiques du serveur Apache, notamment sous forme de graphiques et de métriques. En descendant un peu plus bas, j'ai également pu voir les logs d'accès et d'erreurs du serveur.  
-   [![Apache statistics](https://i.postimg.cc/903FBRL6/28.png)](https://postimg.cc/9RphmM5b)
-   [![Apache logs](https://i.postimg.cc/9frm5tK3/29.png)](https://postimg.cc/XZ6S9Fnx)
-
-Ces outils de visualisation offerts par Kibana rendent l'analyse des logs et la surveillance de l'activité du serveur Apache beaucoup plus simples et plus efficaces.
+ **Assurz-vous que Kibana est lancé en consultant la commande `docker logs -f kibana` comme vu précédement, voir la première partie de document explicatif.**
 
 ## Conclusion
 Au travers de cette démonstration, nous avons illustré comment Elastic Stack, combiné avec Docker, peut transformer de simples logs de serveur en visualisations informatives et exploitables. Cette intégration facilite la surveillance, la détection d'anomalies et la prise de décision, soulignant l'efficacité et l'importance de la centralisation des logs dans le monde moderne de l'informatique.
