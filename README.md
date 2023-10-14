@@ -48,9 +48,10 @@ Après avoir présenté les solutions existantes, nous verrons comment collecter
 8. **Consultation des logs Kibana :**  
    J'ai utilisé `docker logs -f kibana` pour surveiller les logs de Kibana, essentiel pour déterminer quand accéder à l'interface graphique.  
    [![10.png](https://i.postimg.cc/vThXvM0s/10.png)](https://postimg.cc/dZ78sMMH)
+   
 Ne pas faire de `Ctrl + C`.
 
-9. **Accès à l'interface de Kibana :**  
+10. **Accès à l'interface de Kibana :**  
    Dans un navigateur de la machine virtuelle, j'ai accédé à Kibana via l'URL `localhost:5601`.  
    [![Kibana loading](https://i.postimg.cc/cJWgdYsF/11.png)](https://postimg.cc/yDfYPD3R) 
 
