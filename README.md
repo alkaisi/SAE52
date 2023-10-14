@@ -23,6 +23,8 @@ Après avoir présenté les solutions existantes, nous verrons comment collecter
    J'ai accédé au Terminal et me suis connecté comme super utilisateur (root) en utilisant la commande `sudo -s`, suivi de mon mot de passe.  
    [![Login and terminal access](https://i.postimg.cc/nLvp3DZt/3.png)](https://postimg.cc/bGN7Jds6)
 
+   Assurez-vous d'installer docker et docker-compose en utilisant la commande `apt install docker docker-compose`.
+
 3. **Création du répertoire du projet :**  
    J'ai créé un répertoire `projet` pour y stocker mes scripts bash avec la commande `mkdir projet` et m'y suis déplacé avec `cd projet`.  
    [![Directory](https://i.postimg.cc/0j5SkvZb/4.png)](https://postimg.cc/ph7rCgwH)
@@ -51,7 +53,7 @@ Après avoir présenté les solutions existantes, nous verrons comment collecter
    
 Ne pas faire de `Ctrl + C`.
 
-10. **Accès à l'interface de Kibana :**  
+9. **Accès à l'interface de Kibana :**  
    Dans un navigateur de la machine virtuelle, j'ai accédé à Kibana via l'URL `localhost:5601`.  
    [![Kibana loading](https://i.postimg.cc/cJWgdYsF/11.png)](https://postimg.cc/yDfYPD3R) 
 
