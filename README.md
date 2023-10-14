@@ -144,6 +144,7 @@ Après avoir correctement configuré et redémarré tous les conteneurs, je suis
 
 1. **Accès à l'interface de Kibana :**  
    J'ai ouvert un navigateur et accédé à Kibana en utilisant l'URL `localhost:5601`.
+   **Assurz-vous que Kibana est lancé en consultant la commande `docker logs -f kibana` comme vu précédement, voir la première partie de document explicatif.**
    
 2. **Navigation vers le tableau de bord approprié :**  
    J'ai ensuite cliqué sur la rubrique "Dashboard" (Tableau de bord). De là, j'ai sélectionné le tableau de bord intitulé "[Filebeat Apache] Access and error Logs ECS".  
